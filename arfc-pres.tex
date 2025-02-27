@@ -282,11 +282,39 @@
 
 \subsection{Trading On-Demand Reactor}
 \begin{frame}
-  \frametitle{intro tod}
+  \frametitle{A \cyclus time step has 3 parts.}
+  Every agent in a \cyclus simulation undergoes 5 phases:
+  \begin{itemize}
+    \item agents enter simulation (Building Phase)
+    \item agents respond to current simulation state (Tick Phase)
+    \item resource exchange execution (Exchange Phase)
+    \item agents respond to current simulation state (Tock Phase)
+    \item agents leave simulation (Decommissioning Phase)
+  \end{itemize}
+  Between the build and decommissioning phases, every agent cycles through the tick and tock phases for each time step.
 \end{frame}
 
 \begin{frame}
-  \frametitle{t}
+  \frametitle{\cyclus has a universal time step for all agents.}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Using TOD resulted in a speedup of 1.038.}
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.75\textwidth]{images/time_clock_violin.pdf}
+    \caption{A-B-C simulation of the \cycamore reactor and the \gls{tod} reactor.}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The TOD reactor has a higher utilization than \cycamore.}
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/ins_cyc_both.pdf}
+    \caption{Number of instructions and instructions per cycle from the \gls{tod} and \cycamore reactors.}
+  \end{figure}
 \end{frame}
 
 \subsection{Future Work}
@@ -357,6 +385,15 @@
 
   \subsection{LEU+ to HALEU}
   \begin{frame}
+    \frametitle{Our energy production is increasing.}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.75\textwidth]{images/prim_prod_b_source.pdf}
+        \caption{1950-2023 Primary Energy Production by source \cite{mer_april_2024}.}
+    \end{figure}
+  \end{frame}
+
+  \begin{frame}
     \frametitle{What if we can't get HALEU to fuel these advanced reactors?}
     \vspace{-25pt}
     \begin{figure}
@@ -387,15 +424,6 @@
         \end{tabular}
      \end{table}
      These are a mash-up of economic and regulatory definitions.
-  \end{frame}
-
-  \begin{frame}
-    \frametitle{Our energy production is increasing.}
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.75\textwidth]{images/prim_prod_b_source.pdf}
-        \caption{1950-2023 Primary Energy Production by source \cite{mer_april_2024}.}
-    \end{figure}
   \end{frame}
 
   \begin{frame}

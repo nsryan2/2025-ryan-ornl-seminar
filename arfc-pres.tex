@@ -7,7 +7,7 @@
 \documentclass[9pt]{beamer}
 \usetheme[white]{Illinois}
 %\title[short title]{long title}
-\title[Reducing Modeling Assumptions]{Reducing assumptions in advanced reactor fuel cycles}
+\title[Updating Modeling Assumptions]{Updating assumptions in advanced reactor fuel cycles}
 %\subtitle[short subtitle]{long subtitle}
 \subtitle[Short SubTitle]{ORNL Symposium}
 %\author[short name]{long name}
@@ -107,9 +107,9 @@
 \section{My Background}
   \begin{frame}
     \frametitle{Removing assumptions in nuclear fuel cycle modeling}
-    The through line of my research is using computational tools to remove
-    assumptions.
-    \vspace{0.6cm}
+    % The through line of my research is using computational tools to remove
+    % assumptions.
+    % \vspace{0.6cm}
     \begin{columns}
       \column[t]{5cm}
       I am a Masters student in the Advanced Reactors and Fuel Cycles group at
@@ -173,16 +173,16 @@
 
   \begin{frame}
     \frametitle{\cyclus is being used to tackle big questions.}
-    \begin{block}{Making transaction models more detailed}
+    \begin{block}{Making transaction models more detailed.}
         There is active work to incorporate realistic purchasing agreements and market models into \cyclus.
     \end{block}
-    \begin{block}{Identifying realtime diversion or diversion paths}
+    \begin{block}{Identifying realtime diversion or diversion paths.}
         CNTAUR \cite{mummah_advanced_2024} and Pyre \cite{westphal_modeling_2019} format outputs in IAEA code 10 format and model real time diversion, respectively.
     \end{block}
-    \begin{block}{Making facility models more accurate}
+    \begin{block}{Making facility models more accurate.}
       OpenMCyclus \cite{openmcyclus_paper} couples \cyclus with OpenMC to model realtime depletion. From my work, we will discuss the \gls{dpr}, \gls{tod} reactor, \gls{ever}, and \gls{clover} today.
   \end{block}
-    \begin{block}{Finding advanced reactor impacts on the fuel cycle}
+    \begin{block}{Finding advanced reactor impacts on the fuel cycle.}
         We will talk about this in the context of transition scenarios.
     \end{block}
   \end{frame}
@@ -222,7 +222,7 @@
 % \end{frame}
 
 \begin{frame}
-  \frametitle{fuel required}
+  \frametitle{This toy scenario moves from HALEU to LEU.}
   \begin{figure}
     \centering
     \includegraphics[width=0.75\textwidth]{images/mass_fuel.png}
@@ -231,7 +231,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{stored isotopes}
+  \frametitle{The HALEU fuel is visible in the isotopics of stored fuel.}
   \begin{figure}
     \centering
     \includegraphics[width=0.75\textwidth]{images/mass_isotopes.png}
@@ -369,8 +369,7 @@
   \end{frame}
 
   \begin{frame}
-    \frametitle{We define the enrichment levels as...}
-    These are a mash-up of economic and regulatory definitions.
+    \frametitle{We define LEU+ as 5-10\% $^{235}$U enrichment.}
     \begin{table}[H]
         \centering
         \caption{Enrichment levels and their ranges.}
@@ -387,18 +386,20 @@
            \hline
         \end{tabular}
      \end{table}
+     These are a mash-up of economic and regulatory definitions.
   \end{frame}
 
   \begin{frame}
-    \frametitle{Our demand for energy is going up}
+    \frametitle{Our energy production is increasing.}
     \begin{figure}
         \centering
-        \includegraphics[width=0.85\textwidth]{images/new_capacity_ng_d2.pdf}
+        \includegraphics[width=0.75\textwidth]{images/prim_prod_b_source.pdf}
+        \caption{1950-2023 Primary Energy Production by source \cite{mer_april_2024}.}
     \end{figure}
   \end{frame}
 
   \begin{frame}
-    \frametitle{Staggering enrichment allows the supply chain to develop}
+    \frametitle{Staggering enrichment allows the supply chain to develop.}
     \begin{figure}
         \centering
         \includegraphics[width=0.75\textwidth]{images/fresh_fuel.pdf}
@@ -406,7 +407,7 @@
   \end{frame}
 
   \begin{frame}
-    \frametitle{The difference is on the order of hundreds of tons}
+    \frametitle{The difference is on the order of hundreds of tons.}
     \begin{figure}
         \centering
         \includegraphics[width=0.75\textwidth]{images/fresh_fuel_difference.pdf}
@@ -416,7 +417,7 @@
 
   \subsection{Conclusion}
   \begin{frame}
-      \frametitle{Fuel cycle modeling is useful for enegy planning and safeguards}
+      \frametitle{Fuel cycle modeling is useful for enegy planning and safeguards.}
       We have covered a tiny fraction of what fuel cycle modeling can do, but there is so much more to do. In our simple case, we transition from LEU+ to HALEU after 10 years of operation.
       \begin{itemize}
           \item For the Xe100 reactors, we need almost 315 less tons of HALEU.
@@ -436,24 +437,24 @@
 
   \section{Big Questions}
   \begin{frame}
-    \frametitle{\textit{Revisit:} \cyclus is being used to tackle big questions}
-    \begin{block}{Making transaction models more detailed}
+    \frametitle{\textit{Revisit:} \cyclus is being used to tackle big questions.}
+    \begin{block}{Making transaction models more detailed.}
         Incorporate geospatial restrictions with OR-SAGE, and optimization across multiple objectives with OSIER \cite{Dotson_osier}.
     \end{block}
-    \begin{block}{Identifying realtime diversion or diversion paths}
+    \begin{block}{Identifying realtime diversion or diversion paths.}
         Explore the accumulation and detection of tracer isotopes such as $^{232}U$, as suggested by Rhodes and Maldonado \cite{rhodes_u232}. Additionally, expand the coupled physics reactor models to include variation in power.
     \end{block}
-    \begin{block}{Making facility models more accurate}
+    \begin{block}{Making facility models more accurate.}
       Continue to develop \gls{ever}, and \gls{clover}, and explore how we can improve the computational efficiency of the exchange method in \cyclus
     \end{block}
-    \begin{block}{Finding advanced reactor impacts on the fuel cycle}
+    \begin{block}{Finding advanced reactor impacts on the fuel cycle.}
       Consider how enrichment schemes, other reactor designs, and international collaboration affect costs of fuel and waste management.
     \end{block}
   \end{frame}
 
-  \begin{frame}
-    \frametitle{}
-  \end{frame}
+  % \begin{frame}
+  %   \frametitle{}
+  % \end{frame}
 
 \input{acks}
 

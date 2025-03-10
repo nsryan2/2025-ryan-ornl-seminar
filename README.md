@@ -5,10 +5,11 @@ and Fuel Cycles group at the University of Illinois at Urbana-Champaign. While
 this version of the template is geared towards an ARFC Member's report, it can
 be adapted to any individual's needs.
 
-> [!NOTE] This instance of the template is a presentation I made for the
-> Nuclear Energy and Fuel Cycle Division, in the Fusion and Fission Energy
-> Science Directorate at ORNL. It was private under development, but is now
-> public (given that you are reading this, hopefully that was a given).
+> [!NOTE]
+> This instance of the template is a presentation I made for the Nuclear Energy
+> and Fuel Cycle Division, in the Fusion and Fission Energy Science Directorate
+> at ORNL. It was private under development, but is now public (given that you
+> are reading this, hopefully that was a given).
 
 
 

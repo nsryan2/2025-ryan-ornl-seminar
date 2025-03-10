@@ -103,8 +103,8 @@
   \tableofcontents[currentsection]
 \end{frame}
 }
-
-\section{My Background}
+\section{Background}
+\subsection{My Background}
   \begin{frame}
     \frametitle{Removing assumptions in nuclear fuel cycle modeling}
     % The through line of my research is using computational tools to remove
@@ -138,8 +138,8 @@
       \begin{figure}[ht!]
       \centering
       \includegraphics[width=0.75\textwidth]{images/nuclear_fuel_cycle.png}
-      \caption{Source: Penn State Radiation Science and Engineering Center (public domain)$^{*}$}
       \end{figure}
+      Source: Penn State Radiation Science and Engineering Center (public domain)$^{*}$
   \end{frame}
 
   \begin{frame}
@@ -155,7 +155,6 @@
         we can begin to evaluate the tradeoffs between fuel cycle options.
   \end{frame}
 
-\subsection{Fuel Cycle Modeling}
   \begin{frame}
     \frametitle{We use \cyclus to model fuel cycles.}
     \vspace{20pt}
@@ -188,6 +187,7 @@
   \end{frame}
 
 \section{Enrichment and Core Loading Versatility}
+\subsection{NEUP}
 \begin{frame}
   \frametitle{NEUP goals.}
   This work is one part of a broader effort to enhance the \cyclus fuel cycle code. The three areas of work are to:
@@ -239,6 +239,7 @@
   \end{figure}
 \end{frame}
 
+\subsection{Future Work}
 \begin{frame}
   \frametitle{Future work on EVER.}
   \begin{itemize}
@@ -291,13 +292,13 @@
     \item agents respond to current simulation state (Tock Phase)
     \item agents leave simulation (Decommissioning Phase)
   \end{itemize}
-  Between the build and decommissioning phases, every agent cycles through the tick and tock phases for each time step.
+  Between the build and decommissioning phases, every agent cycles through the tick and tock phases for each universal time step.
 \end{frame}
 
-\begin{frame}
-  \frametitle{\cyclus has a universal time step for all agents.}
+% \begin{frame}
+%   \frametitle{\cyclus has a universal time step for all agents.}
 
-\end{frame}
+% \end{frame}
 
 \begin{frame}
   \frametitle{Using TOD resulted in a speedup of 1.038.}
@@ -323,6 +324,71 @@
 \end{frame}
 
 \section{Transition Scenarios}
+  \subsection{LEU+ to HALEU}
+  \begin{frame}
+    \frametitle{Our energy production is increasing.}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.75\textwidth]{images/prim_prod_b_source.pdf}
+        \caption{1950-2023 Primary Energy Production by source \cite{mer_april_2024}.}
+    \end{figure}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{What if we can't get HALEU to fuel these advanced reactors?}
+    \vspace{-25pt}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.96\textwidth]{images/reactor_timeline.png}
+    \end{figure}
+    Source: \url{inl.gov/nuclear-reactor-sustainment-and-expanded-deployment/}
+    \vspace{-8pt}
+    Could we use LEU+ while HALEU supply chains develop?
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{We define LEU+ as 5-10\% $^{235}$U enrichment.}
+    \begin{table}[H]
+        \centering
+        \caption{Enrichment levels and their ranges.}
+        \label{tab:enrichment_levels}
+        \begin{tabular}{c c}
+          \hline
+          \textbf{Enrichment Level} & \textbf{Range [\%  $^{235}$U]} \\
+          \hline
+          Natural & $<$ 0.711 \\
+          LEU & 0.711-5 \\
+          LEU+ & 5-10 \\
+          HALEU & 10-20 \\
+          HEU & $\geq$ 20  \\
+          \hline
+        \end{tabular}
+    \end{table}
+    These are a mash-up of economic and regulatory definitions.
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{We use Serpent to approximate reactors with LEU+ or HALEU.}
+    \begin{columns}
+      \column[t]{5cm}
+      \begin{figure}
+        \centering
+        \includegraphics[width=0.75\textwidth]{images/haleu_mmr_2blocks.inp_geom1.png}
+        \caption{Top-down view of the MMR core.}
+        \label{fig:td_mmr}
+      \end{figure}
+
+      \column[t]{5cm}
+      \begin{figure}[htbp!]
+        \begin{center}
+          \includegraphics[width=0.75\textwidth]{images/htgr-mr-burn-200.inp_mesh1_bstep6.png}
+        \end{center}
+        \caption{Top-down view of the Xe-100 core.}
+        \label{fig:td_xe100}
+      \end{figure}
+    \end{columns}
+  \end{frame}
+
   \subsection{Deployment Schemes}
   \begin{frame}
     \frametitle{We mimic real-world deployment by meeting energy demand.}
@@ -331,6 +397,31 @@
       \includegraphics[width=0.75\textwidth]{images/new_capacity_ng_d2.pdf}
       \caption{Historical and projected US nuclear energy if we double the capacity of nuclear energy by 2050.}
     \end{figure}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Schemes have built-in assumptions about the scenario.}
+    \begin{table}[H]
+      \centering
+      \caption{Deployment schemes.}
+      \label{tab:deployment_schemes}
+      \newcommand{\ColWidth}{0.48\linewidth}
+      \begin{tabular}{p{\ColWidth} p{\ColWidth}}
+          \hline
+          Scheme & Description \\
+          \hline
+          Greedy Deployment & In a time step this deploys the largest
+          reactor maximally, then the next largest maximally for the remaining capacity, and so on. \\
+          \vspace{1.5mm}\\
+          Random Deployment & Uses a date and hour as seed to sample the
+          reactors list randomly. \\
+          \vspace{1.5mm}\\
+          Initially Random, Greedy Deployment & Run the random scheme until
+          a reactor bigger than the remaining capacity is proposed,
+          then the greedy algorithm. \\
+          \hline
+      \end{tabular}
+    \end{table}
   \end{frame}
 
   \begin{frame}
@@ -348,83 +439,40 @@
     % \end{algorithm}
   \end{frame}
 
-  \begin{frame}
-    \frametitle{Random reactor deployment scheme.}
-  %   \begin{algorithm}[H]
-  %     \caption{Random Reactor Deployment Algorithm}
-      \begin{algorithmic}[1]
-          \State Initialize demand
-          \While{demand exists}
-              \State Randomly deploy a reactor that does not exceed demand
-              \State Update demand
-          \EndWhile
-      \end{algorithmic}
-  %     \end{algorithm}
-  \end{frame}
+  % \begin{frame}
+  %   \frametitle{Random reactor deployment scheme.}
+  % %   \begin{algorithm}[H]
+  % %     \caption{Random Reactor Deployment Algorithm}
+  %     \begin{algorithmic}[1]
+  %         \State Initialize demand
+  %         \While{demand exists}
+  %             \State Randomly deploy a reactor that does not exceed demand
+  %             \State Update demand
+  %         \EndWhile
+  %     \end{algorithmic}
+  % %     \end{algorithm}
+  % \end{frame}
 
-  \begin{frame}
-    \frametitle{Random + greedy reactor deployment scheme.}
-  %     \begin{algorithm}[H]
-  %       \caption{Random + Greedy Reactor Deployment Algorithm}
-        \begin{algorithmic}[1]
-            \State Initialize demand
-            \While{demand exists}
-                \State Randomly deploy a reactor
-                \If{demand is exceeded}
-                    \State Remove last reactor
-                    \If{demand still exists}
-                        \State Select the largest reactor that does not exceed demand
-                        \State Deploy until the next reactor exceeds demand
-                        \State Update demand
-                    \EndIf
-                \EndIf
-            \EndWhile
-        \end{algorithmic}
-  %       \end{algorithm}
-  \end{frame}
-
-  \subsection{LEU+ to HALEU}
-  \begin{frame}
-    \frametitle{Our energy production is increasing.}
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.75\textwidth]{images/prim_prod_b_source.pdf}
-        \caption{1950-2023 Primary Energy Production by source \cite{mer_april_2024}.}
-    \end{figure}
-  \end{frame}
-
-  \begin{frame}
-    \frametitle{What if we can't get HALEU to fuel these advanced reactors?}
-    \vspace{-25pt}
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.98\textwidth]{images/reactor_timeline.png}
-        \caption{Source: \url{inl.gov/nuclear-reactor-sustainment-and-expanded-deployment/}}
-    \end{figure}
-    \vspace{-8pt}
-    Could we use LEU+ in the meantime?
-  \end{frame}
-
-  \begin{frame}
-    \frametitle{We define LEU+ as 5-10\% $^{235}$U enrichment.}
-    \begin{table}[H]
-        \centering
-        \caption{Enrichment levels and their ranges.}
-        \label{tab:enrichment_levels}
-        \begin{tabular}{c c}
-           \hline
-           \textbf{Enrichment Level} & \textbf{Range [\%  $^{235}$U]} \\
-           \hline
-           Natural & $<$ 0.711 \\
-           LEU & 0.711-5 \\
-           LEU+ & 5-10 \\
-           HALEU & 10-20 \\
-           HEU & $\geq$ 20  \\
-           \hline
-        \end{tabular}
-     \end{table}
-     These are a mash-up of economic and regulatory definitions.
-  \end{frame}
+  % \begin{frame}
+  %   \frametitle{Random + greedy reactor deployment scheme.}
+  % %     \begin{algorithm}[H]
+  % %       \caption{Random + Greedy Reactor Deployment Algorithm}
+  %       \begin{algorithmic}[1]
+  %           \State Initialize demand
+  %           \While{demand exists}
+  %               \State Randomly deploy a reactor
+  %               \If{demand is exceeded}
+  %                   \State Remove last reactor
+  %                   \If{demand still exists}
+  %                       \State Select the largest reactor that does not exceed demand
+  %                       \State Deploy until the next reactor exceeds demand
+  %                       \State Update demand
+  %                   \EndIf
+  %               \EndIf
+  %           \EndWhile
+  %       \end{algorithmic}
+  % %       \end{algorithm}
+  % \end{frame}
 
   \begin{frame}
     \frametitle{Staggering enrichment allows the supply chain to develop.}
@@ -442,8 +490,6 @@
     \end{figure}
   \end{frame}
 
-
-  \subsection{Conclusion}
   \begin{frame}
       \frametitle{Fuel cycle modeling is useful for enegy planning and safeguards.}
       We have covered a tiny fraction of what fuel cycle modeling can do, but there is so much more to do. In our simple case, we transition from LEU+ to HALEU after 10 years of operation.
@@ -457,7 +503,7 @@
 
   \subsection{Future Work}
   \begin{frame}
-      \frametitle{t}
+      \frametitle{The metrics we used are economic precurors}
       \begin{itemize}
           \item F
       \end{itemize}
@@ -467,16 +513,32 @@
   \begin{frame}
     \frametitle{\textit{Revisit:} \cyclus is being used to tackle big questions.}
     \begin{block}{Making transaction models more detailed.}
-        Incorporate geospatial restrictions with OR-SAGE, and optimization across multiple objectives with OSIER \cite{Dotson_osier}.
+        Incorporate geospatial restrictions with OR-SAGE, and multi objective optimization with OSIER \cite{Dotson_osier}.
     \end{block}
     \begin{block}{Identifying realtime diversion or diversion paths.}
-        Explore the accumulation and detection of tracer isotopes such as $^{232}U$, as suggested by Rhodes and Maldonado \cite{rhodes_u232}. Additionally, expand the coupled physics reactor models to include variation in power.
+        Study tracer isotopes such as $^{232}U$, suggested by Rhodes and Maldonado \cite{rhodes_u232}. Vary the power of coupled physics reactor models.
     \end{block}
     \begin{block}{Making facility models more accurate.}
-      Continue to develop \gls{ever}, and \gls{clover}, and explore how we can improve the computational efficiency of the exchange method in \cyclus
+      Continue \gls{ever} and \gls{clover}, and improve the exchange method's efficiency. Simulate physics for other reactor designs.
     \end{block}
     \begin{block}{Finding advanced reactor impacts on the fuel cycle.}
-      Consider how enrichment schemes, other reactor designs, and international collaboration affect costs of fuel and waste management.
+      Consider how enrichment schemes, other reactor designs, and international collaboration affect costs of fuel and waste management. Apply to fusion systems.
+    \end{block}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{More big questions.} % bad title
+    \begin{block}{Rollo}
+      HFIR fuel? Weird shapes or distributions additively manufactured?
+    \end{block}
+    \begin{block}{ATF fuel modeling?}
+      I have a half-baked idea of modeling triso atf fuel? Or maybe ATF fuel cycles?
+    \end{block}
+    \begin{block}{Isotopes}
+      Also not really under this title, but a supply chain for them? With proposed research reactors?
+    \end{block}
+    \begin{block}{Nuclear grade graphite}
+      supply chain?
     \end{block}
   \end{frame}
 

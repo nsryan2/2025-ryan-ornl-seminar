@@ -7,7 +7,7 @@
 \documentclass[9pt]{beamer}
 \usetheme[white]{Illinois}
 %\title[short title]{long title}
-\title[Updating Modeling Assumptions]{Updating assumptions in advanced reactor fuel cycles}
+\title[Updating Fuel Cycle Assumptions]{Updates to time, power, and deployment in advanced reactor fuel cycle modeling}
 %\subtitle[short subtitle]{long subtitle}
 \subtitle[Short SubTitle]{ORNL Symposium}
 %\author[short name]{long name}
@@ -72,6 +72,7 @@
 % \makeatletter
 \setbeamertemplate{caption}{\raggedright\insertcaption\par}
 \setbeamertemplate{page number in head/foot}[appendixframenumber]
+\setbeamertemplate{caption}[numbered]
 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -106,14 +107,14 @@
 \section{Background}
 \subsection{My Background}
   \begin{frame}
-    \frametitle{Removing assumptions in nuclear fuel cycle modeling}
+    \frametitle{Removing assumptions in nuclear fuel cycle modeling.}
     % The through line of my research is using computational tools to remove
     % assumptions.
     % \vspace{0.6cm}
     \begin{columns}
       \column[t]{5cm}
       I am a Masters student in the Advanced Reactors and Fuel Cycles group at
-      UIUC under Professors Madicken Munk and Kathryn Huff.
+      UIUC under Prof. Madicken Munk and Prof. Kathryn Huff.
       \begin{center}
               \includegraphics[height=0.2\textheight]{./images/arfc-logo}
       \end{center}
@@ -128,6 +129,12 @@
         \label{fig:uiuc_phys}
       \end{figure}
     \end{columns}
+    \begin{itemize}
+      \item Making transaction models more detailed.
+      \item Identifying realtime diversion or diversion paths.
+      \item Making facility models more accurate.
+      \item Finding advanced reactor impacts on the fuel cycle.
+    \end{itemize}
   \end{frame}
 
 
@@ -138,8 +145,8 @@
       \begin{figure}[ht!]
       \centering
       \includegraphics[width=0.75\textwidth]{images/nuclear_fuel_cycle.png}
+      \caption{General nuclear fuel cycle overview \cite{penn_fc}.}
       \end{figure}
-      Source: Penn State Radiation Science and Engineering Center (public domain)$^{*}$
   \end{frame}
 
   \begin{frame}
@@ -159,37 +166,35 @@
     \frametitle{We use \cyclus to model fuel cycles.}
     \vspace{20pt}
     \cyclus is an open-source agent-based fuel cycle code allowing for detailed facility and transaction modeling \cite{huff_fundamental_2016}.
-    \vspace{20pt}
+    \vspace{30pt}
     \begin{figure}
         \centering
         \includegraphics[width=0.45\textwidth]{images/cyclus_logo.png}
         % mention ORION
     \end{figure}
-
-    \vspace{37pt}
-    Source: \url{https://github.com/cyclus/cyclus.github.com/blob/source/source/logos/logo2_transp.png}
   \end{frame}
 
   \begin{frame}
     \frametitle{\cyclus is being used to tackle big questions.}
-    \begin{block}{Making transaction models more detailed.}
+    \begin{block}{Transaction Models.}
         There is active work to incorporate realistic purchasing agreements and market models into \cyclus.
     \end{block}
-    \begin{block}{Identifying realtime diversion or diversion paths.}
+    \begin{block}{Nonproliferation and Safeguards.}
         CNTAUR \cite{mummah_advanced_2024} and Pyre \cite{westphal_modeling_2019} format outputs in IAEA code 10 format and model real time diversion, respectively.
     \end{block}
-    \begin{block}{Making facility models more accurate.}
-      OpenMCyclus \cite{openmcyclus_paper} couples \cyclus with OpenMC to model realtime depletion. From my work, we will discuss the \gls{dpr}, \gls{tod} reactor, \gls{ever}, and \gls{clover} today.
+    \begin{block}{Facility Models.}
+      OpenMCyclus \cite{openmcyclus_paper} couples \cyclus with OpenMC to model realtime depletion. From my work, we will discuss the \gls{dpr}, \gls{tod} reactor, and \gls{ever} today.
   \end{block}
-    \begin{block}{Finding advanced reactor impacts on the fuel cycle.}
-        We will talk about this in the context of transition scenarios.
+    \begin{block}{Transition Scenarios.}
+        We will talk about this in the context of advanced reactors.
     \end{block}
   \end{frame}
 
 \section{Enrichment and Core Loading Versatility}
-\subsection{NEUP}
+\subsection{2023 \cyclus NEUP}
 \begin{frame}
-  \frametitle{NEUP goals.}
+  \frametitle{Illuminating Emerging Supply Chain and Waste Management
+  Challenges.}
   This work is one part of a broader effort to enhance the \cyclus fuel cycle code. The three areas of work are to:
   \begin{itemize}
     \item improve modeling of supply chain dynamics,
@@ -199,13 +204,13 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Varying core loading and burnup improves accuracy.}
+  \frametitle{Varying core loading improves fuel utilization.}
   Fuel cycle simulators often \cite{out_of_core} assume that:
   \begin{itemize}
-    \item the burnup of each fuel assembly is the same,
-    \item and each fuel element is exposed to the same spectrum on average over its lifetime.
+    \item the utilization of each fuel assembly is the same,
+    \item and the reactor power is constant over its lifetime when not refueling.
   \end{itemize}
-  These are two sides of the same coin, but, when we create models, can result in separate assumptions for the reactor and fuel that are not necessarily connected.
+  When we create models, these can result in separate assumptions for the reactor and fuel that are not necessarily connected.
 \end{frame}
 
 \begin{frame}
@@ -254,7 +259,7 @@
 
 \subsection{Dynamic Power Reactor}
 \begin{frame}
-  \frametitle{\cycamore's power was unequal 62.2\% of the 1460-day simulation.}
+  \frametitle{\cycamore's capacity was unequal 62.2\% for the days.}
   \begin{figure}
     \centering
     \includegraphics[width=0.75\textwidth]{images/power_percent_clinton_fake.pdf}
@@ -321,18 +326,31 @@
 \subsection{Future Work}
 \begin{frame}
   \frametitle{Future work on DPR and TOD.}
+% 1. Finding other ways to reduce the number of instructions.
+% 1. Investigating the exchange method, and how the complexity can be streamlined.
+% 1. Applying similar logic to other standard fuel cycle archetypes.
+% 1. Incorporating other variations in the fuel usage (allow reactors to model hot or cold shut down).
+% 1. Generating some sort of synthetic variation data based on the traditional LWR fleet performance and extrapolating that into the future.
+% 1. Attempting to create bounding cases that are an analogy to the performance of the advanced reactor designs we use in the work.
+  \begin{itemize}
+    \item Investigating the exchange method, and how the complexity can be streamlined.
+    \item Applying similar trading on-demand and dynamic parameter logic to other standard fuel cycle archetypes where applicable.
+    \item Incorporating other variations in the fuel usage (model hot or cold shut down, or off-cycle down powers).
+    \item Generating synthetic power variation data based on the traditional LWR fleet performance and extrapolating that into the future.
+    \item Attempting to create bounding cases that are an analogy to the performance of the advanced reactor designs we use in the work.
+  \end{itemize}
 \end{frame}
 
 \section{Transition Scenarios}
   \subsection{LEU+ to HALEU}
-  \begin{frame}
-    \frametitle{Our energy production is increasing.}
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.75\textwidth]{images/prim_prod_b_source.pdf}
-        \caption{1950-2023 Primary Energy Production by source \cite{mer_april_2024}.}
-    \end{figure}
-  \end{frame}
+  % \begin{frame}
+  %   \frametitle{Our energy production is increasing.}
+  %   \begin{figure}
+  %       \centering
+  %       \includegraphics[width=0.75\textwidth]{images/prim_prod_b_source.pdf}
+  %       \caption{1950-2023 Primary Energy Production by source. Reproduced from \cite{mer_april_2024}.}
+  %   \end{figure}
+  % \end{frame}
 
   \begin{frame}
     \frametitle{What if we can't get HALEU to fuel these advanced reactors?}
@@ -343,7 +361,7 @@
     \end{figure}
     Source: \url{inl.gov/nuclear-reactor-sustainment-and-expanded-deployment/}
     \vspace{-8pt}
-    Could we use LEU+ while HALEU supply chains develop?
+    Could we use \gls{leup} while HALEU supply chains develop?
   \end{frame}
 
   \begin{frame}
@@ -374,7 +392,7 @@
       \begin{figure}
         \centering
         \includegraphics[width=0.75\textwidth]{images/haleu_mmr_2blocks.inp_geom1.png}
-        \caption{Top-down view of the MMR core.}
+        \caption{Top-down view of the \gls{leup} MMR core. Adapted from Bachmann \cite{bachmann_mmr_like_2023}.}
         \label{fig:td_mmr}
       \end{figure}
 
@@ -383,7 +401,7 @@
         \begin{center}
           \includegraphics[width=0.75\textwidth]{images/htgr-mr-burn-200.inp_mesh1_bstep6.png}
         \end{center}
-        \caption{Top-down view of the Xe-100 core.}
+        \caption{Top-down view of the \gls{leup} Xe-100 core. Adapted from Richter \cite{richter_xe100_like}.}
         \label{fig:td_xe100}
       \end{figure}
     \end{columns}
@@ -410,10 +428,9 @@
           \hline
           Scheme & Description \\
           \hline
-          Greedy Deployment & In a time step this deploys the largest
-          reactor maximally, then the next largest maximally for the remaining capacity, and so on. \\
+          Greedy Deployment & Deploy reactors to fill demand, preferring to deploy larger capacity units first. \\
           \vspace{1.5mm}\\
-          Random Deployment & Uses a date and hour as seed to sample the
+          Random Deployment & Use the date and hour as seed to sample the
           reactors list randomly. \\
           \vspace{1.5mm}\\
           Initially Random, Greedy Deployment & Run the random scheme until
@@ -491,8 +508,8 @@
   \end{frame}
 
   \begin{frame}
-      \frametitle{Fuel cycle modeling is useful for enegy planning and safeguards.}
-      We have covered a tiny fraction of what fuel cycle modeling can do, but there is so much more to do. In our simple case, we transition from LEU+ to HALEU after 10 years of operation.
+      \frametitle{Fuel cycle modeling is useful for enegy planning.}
+      In our case, we transition from \gls{leup} to HALEU after 10 years of operation.
       \begin{itemize}
           \item For the Xe100 reactors, we need almost 315 less tons of HALEU.
           \item For the MMR reactors, we need almost 97 less tons of HALEU.
@@ -501,44 +518,44 @@
   \end{frame}
 
 
-  \subsection{Future Work}
-  \begin{frame}
-      \frametitle{The metrics we used are economic precurors}
-      \begin{itemize}
-          \item F
-      \end{itemize}
-  \end{frame}
+  % \subsection{Future Work}
+  % \begin{frame}
+  %     \frametitle{The metrics we used are economic precurors}
+  %     \begin{itemize}
+  %         \item F
+  %     \end{itemize}
+  % \end{frame}
 
   \section{Big Questions}
   \begin{frame}
     \frametitle{\textit{Revisit:} \cyclus is being used to tackle big questions.}
     \begin{block}{Making transaction models more detailed.}
-        Incorporate geospatial restrictions with OR-SAGE, and multi objective optimization with OSIER \cite{Dotson_osier}.
+        Incorporate geospatial restrictions with OR-SAGE, the cost implications of my results, and multi objective optimization with OSIER \cite{Dotson_osier}.
     \end{block}
     \begin{block}{Identifying realtime diversion or diversion paths.}
-        Study tracer isotopes such as $^{232}U$, suggested by Rhodes and Maldonado \cite{rhodes_u232}. Vary the power of coupled physics reactor models.
+        Study tracer isotopes, such as $^{232}U$, suggested by Rhodes and Maldonado \cite{rhodes_u232}, and international collaboration on supply chain security.
     \end{block}
     \begin{block}{Making facility models more accurate.}
-      Continue \gls{ever} and \gls{clover}, and improve the exchange method's efficiency. Simulate physics for other reactor designs.
+      Continue \gls{ever} and \gls{clover}, and improve the exchange method's efficiency. Vary the power of coupled physics reactor models.
     \end{block}
     \begin{block}{Finding advanced reactor impacts on the fuel cycle.}
-      Consider how enrichment schemes, other reactor designs, and international collaboration affect costs of fuel and waste management. Apply to fusion systems.
+      Consider how enrichment schemes, other reactor designs (including fusion), and the costs of fuel and waste management.
     \end{block}
   \end{frame}
 
   \begin{frame}
     \frametitle{More big questions.} % bad title
-    \begin{block}{Rollo}
-      HFIR fuel? Weird shapes or distributions additively manufactured?
+    \begin{block}{Reactor evOLutionary aLgorithm Optimizer (ROLLO)}
+      Explore non-conventional geometries and fuel distributions to improve performance and safety.
     \end{block}
-    \begin{block}{ATF fuel modeling?}
-      I have a half-baked idea of modeling triso atf fuel? Or maybe ATF fuel cycles?
-    \end{block}
-    \begin{block}{Isotopes}
+    % \begin{block}{ATF fuel modeling.}
+    %   I have a half-baked idea of modeling triso atf fuel? Or maybe ATF fuel cycles?
+    % \end{block}
+    \begin{block}{UNF isotope characterization and recycling.}
       Also not really under this title, but a supply chain for them? With proposed research reactors?
     \end{block}
-    \begin{block}{Nuclear grade graphite}
-      supply chain?
+    \begin{block}{Nuclear grade graphite and .}
+      Characterizing the supply chain, and identifying opportunities for secondary material use.
     \end{block}
   \end{frame}
 

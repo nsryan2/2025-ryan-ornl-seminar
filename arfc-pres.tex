@@ -1,4 +1,4 @@
-%        File: arfc-beamer.tex
+%     File: arfc-beamer.tex
 %     Created: Sun May 5 10:00 PM 2013 C
 %
 
@@ -351,7 +351,7 @@
   For example, when the \cycamore reactor refuels, it will: \pause
   \begin{itemize}[<+->]
     \item identify which fuel is ready to be discharged (Tick Phase),
-    \item submit a bid for new fuel (Exchange Phase),
+    \item tells the market that it needs new fuel and has used fuel (Exchange Phase),
     \item then load new fuel (Tock Phase).
   \end{itemize}
 \end{frame}
@@ -416,7 +416,7 @@ Across machines, we are interested in reducing the number of unnecessary trades,
 \begin{frame}
   \frametitle{Future work on DPR and \gls{tod}.}
   \begin{itemize}[<+->]
-    \item Investigating the exchange method, and how the complexity can be streamlined.
+    \item Optimizing the exchange method, and streamline complexity.
     \item Applying trading on-demand and dynamic parameter logic to other standard fuel cycle archetypes where applicable.
     \item Incorporating other variations in the fuel usage (model hot or cold shut down, or off-cycle down powers).
     \item Generating synthetic power variation data based on the traditional LWR fleet performance and extrapolating that into the future.
@@ -451,7 +451,7 @@ Across machines, we are interested in reducing the number of unnecessary trades,
         \centering
         \caption{Enrichment levels and their ranges.}
         \label{tab:enrichment_levels}
-        \begin{tabular}{c c}
+        \begin{tabular}{l l}
           \hline
           \textbf{Enrichment Level} & \textbf{Range [\%  $^{235}$U]} \\
           \hline
@@ -463,6 +463,7 @@ Across machines, we are interested in reducing the number of unnecessary trades,
           \hline
         \end{tabular}
     \end{table}
+    \vspace{8pt}
     These are a mash-up of economic and regulatory definitions.
   \end{frame}
 
@@ -595,8 +596,8 @@ Across machines, we are interested in reducing the number of unnecessary trades,
       \frametitle{Fuel cycle modeling is useful for enegy planning.}
       In our case, we transition from \gls{leup} to HALEU after 10 years of operation.
       \begin{itemize}
-          \item For the Xe100 reactors, we need almost 315 less tonnes of HALEU.
-          \item For the MMR reactors, we need almost 97 less tonnes of HALEU.
+          \item For the Xe100 reactors, we need almost 315 fewer tonnes of HALEU.
+          \item For the MMR reactors, we need almost 97 fewer tonnes of HALEU.
       \end{itemize}
       Next we need to characterize what the cost of this transition would be.
   \end{frame}
@@ -620,17 +621,17 @@ Across machines, we are interested in reducing the number of unnecessary trades,
 
   \begin{frame}
     \frametitle{More big questions.} % bad title
-    \begin{block}{Reactor evOLutionary aLgorithm Optimizer (ROLLO)}
-      Explore non-conventional geometries and fuel distributions to improve performance and safety.
+    \begin{block}{New fuel geometries and distributions.}
+      Explore non-conventional geometries and fuel distributions to improve performance and safety through genetic algorithms.
     \end{block} \pause
     % \begin{block}{ATF fuel modeling.}
     %   I have a half-baked idea of modeling triso atf fuel? Or maybe ATF fuel cycles?
     % \end{block}
     \begin{block}{UNF isotope characterization and recycling.}
-
+      Interpreting the isotopic composition of used nuclear fuel to inform recycling strategies and techno-economic analysis transmutation.
     \end{block} \pause
     \begin{block}{Nuclear-grade materials.}
-      Characterizing the supply chain, and identifying opportunities for secondary material use.
+      Characterizing the supply chain of nuclear-grade graphite, and identifying opportunities for secondary material use.
     \end{block}
   \end{frame}
 
